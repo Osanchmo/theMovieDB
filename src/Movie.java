@@ -6,27 +6,22 @@ public class Movie {
     String title;
     String releaseDate;
 
-    public int getId() {
-        return id;
+    public Movie(int id, String title, String releaseDate){
+        this.id = id;
+        this.title = title;
+        this.releaseDate = releaseDate;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getId() {
+        return id;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(String releaseDate) {
-        this.releaseDate = releaseDate;
-    }
 }

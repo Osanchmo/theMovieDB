@@ -15,7 +15,7 @@ public class SQLCreateMain {
 
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:movid.db");
-            System.out.println("Opened database successfully");
+            System.out.println("Conexión con BBDD establecida");
 
             stmt = c.createStatement();
             String sql = "CREATE TABLE MOVIE " +
@@ -26,10 +26,10 @@ public class SQLCreateMain {
             stmt.executeUpdate(sql);
 
             sql = "CREATE TABLE CAST " +
-                    "(CAST_ID         INT           NOT NULL" +
-                    " NAME            TEXT          NOT NULL, " +
-                    " CHARACTER       TEXT          NOT NULL" +
-                    " MOVIE_ID         INT          NOT NULL," +
+                    "(CAST_ID         INT           NOT NULL," +
+                    " CAST_NAME       TEXT          NOT NULL, " +
+                    " CHARACTER       TEXT          NOT NULL," +
+                    " MOVIE_ID        INT          NOT NULL," +
                     " PRIMARY KEY (CAST_ID)," +
                     " FOREIGN KEY (MOVIE_ID) REFERENCES MOVIE(MOVIE_ID))";
             stmt.executeUpdate(sql);
@@ -40,6 +40,6 @@ public class SQLCreateMain {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
-        System.out.println("Table created successfully");
+        System.out.println("Se han creado las tablas correctamente");
     }
 }
