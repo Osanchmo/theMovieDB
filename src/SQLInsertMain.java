@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class SQLInsertMain {
     public static void main(String[] args) {
 
-        
+        //incialitzem l'obtenció de dades
         ArrayList<Movie> movies = new ArrayList<>();
         ArrayList<Cast> casts = new ArrayList<>();
         DataGet.getMovieData(movies);
@@ -24,6 +24,7 @@ public class SQLInsertMain {
             String sql = "";
             stmt = c.createStatement();
 
+            //Afegil les dades obtesses de la API a la BD
             for (Movie m: movies) {
                 sql = "INSERT OR IGNORE INTO MOVIE (MOVIE_ID,TITLE,REL_DATE) " + "VALUES (?,?,?);";
                 PreparedStatement prep = c.prepareStatement(sql); {

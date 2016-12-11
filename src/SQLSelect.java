@@ -3,7 +3,11 @@ import java.util.ArrayList;
 
 public class SQLSelect {
 
-
+    /**
+     * selecciona les dades de películes de la BBDD
+     * @param opt
+     * @return
+     */
     public static ArrayList<Movie> SelectMovies(int opt) {
         ArrayList<Movie> movies = new ArrayList<>();
         Connection c = null;
@@ -33,7 +37,11 @@ public class SQLSelect {
         return movies;
     }
 
-
+    /**
+     * obté les dades del Casting de la BBDD
+     * @param opt
+     * @return
+     */
     public static ArrayList<Cast> SelectCast(int opt){
         ArrayList<Cast> casts = new ArrayList<>();
         Connection c = null;

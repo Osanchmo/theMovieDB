@@ -26,6 +26,9 @@ public class MenuMain {
 
     }
 
+    /**
+     * inicia el primer mode
+     */
     private static void firstMode(){
         Scanner in = new Scanner(System.in);
         System.out.println("iniciant mode 1 Movies");
@@ -46,6 +49,10 @@ public class MenuMain {
 
 
     }
+
+    /**
+     * inicia el segon mode
+     */
     private static void secondMode(){
         Scanner in = new Scanner(System.in);
         System.out.println("iniciant mode 2 Casting");

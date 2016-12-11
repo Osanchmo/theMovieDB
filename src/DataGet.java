@@ -23,6 +23,11 @@ public class DataGet {
         return result.toString();
     }
 
+    /**
+     * obté les dades del casting de la API
+     * @param casts
+     * @return
+     */
     public static ArrayList<Cast> getCastData(ArrayList<Cast> casts) {
         String s = "";
         String api_key = "64f50fb33fb55357474e1c096fcda697";
@@ -56,7 +61,11 @@ public class DataGet {
         return casts;
     }
 
-
+    /**
+     * obté les dades de les pelicules de la API
+     * @param movies
+     * @return
+     */
     public static ArrayList<Movie> getMovieData(ArrayList<Movie> movies) {
 
         String s = "";

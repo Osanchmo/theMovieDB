@@ -13,10 +13,13 @@ public class SQLCreateMain {
         Statement stmt = null;
         try {
 
+            //tipus de bd
             Class.forName("org.sqlite.JDBC");
+            //ruta BD
             c = DriverManager.getConnection("jdbc:sqlite:movid.db");
             System.out.println("Conexión con BBDD establecida");
 
+            //Creació de taules
             stmt = c.createStatement();
             String sql = "CREATE TABLE IF NOT EXISTS MOVIE " +
                     "(MOVIE_ID        INT          NOT NULL," +
