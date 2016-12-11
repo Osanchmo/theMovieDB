@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class SQLInsertMain {
     public static void main(String[] args) {
 
+        
         ArrayList<Movie> movies = new ArrayList<>();
         ArrayList<Cast> casts = new ArrayList<>();
         DataGet.getMovieData(movies);
