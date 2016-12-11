@@ -18,19 +18,18 @@ public class SQLCreateMain {
             System.out.println("Conexión con BBDD establecida");
 
             stmt = c.createStatement();
-            String sql = "CREATE TABLE MOVIE " +
+            String sql = "CREATE TABLE IF NOT EXISTS MOVIE " +
                     "(MOVIE_ID        INT          NOT NULL," +
                     " TITLE           TEXT         NOT NULL, " +
-                    " REL_DATE        INT          NOT NULL," +
+                    " REL_DATE        TEXT          NOT NULL," +
                     " PRIMARY KEY (MOVIE_ID))";
             stmt.executeUpdate(sql);
 
-            sql = "CREATE TABLE CAST " +
-                    "(CAST_ID         INT           NOT NULL," +
+            sql = "CREATE TABLE IF NOT EXISTS CAST " +
+                    "(CAST_ID         INTEGER       PRIMARY KEY," +
                     " CAST_NAME       TEXT          NOT NULL, " +
                     " CHARACTER       TEXT          NOT NULL," +
                     " MOVIE_ID        INT          NOT NULL," +
-                    " PRIMARY KEY (CAST_ID)," +
                     " FOREIGN KEY (MOVIE_ID) REFERENCES MOVIE(MOVIE_ID))";
             stmt.executeUpdate(sql);
 

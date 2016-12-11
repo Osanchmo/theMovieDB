@@ -1,6 +1,3 @@
-/**
- * Created by 21753725a on 21/11/16.
- */
 public class Movie {
     int id;
     String title;

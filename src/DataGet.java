@@ -45,7 +45,7 @@ public class DataGet {
 
                 for (int x = 0; x < array.size(); x++) {
                     JSONObject jo= (JSONObject)array.get(x);
-                    c = new Cast((Long)jo.get("cast_id"),(String)jo.get("name"),(String)jo.get("character"),i);
+                    c = new Cast((String)jo.get("name"),(String)jo.get("character"),i);
                     casts.add(c);
                 }
 
