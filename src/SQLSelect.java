@@ -42,7 +42,6 @@ public class SQLSelect {
         Cast cast;
         try {
             while (rs.next()) {
-                int id = rs.getInt("ID");
                 Long castid = rs.getLong("CAST_ID");
                 String name = rs.getString("CAST_NAME");
                 String character = rs.getString("CHARACTER");
