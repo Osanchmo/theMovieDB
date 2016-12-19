@@ -5,24 +5,33 @@ import java.util.Scanner;
 public class MenuMain {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
+            Boolean bol = true;
+            System.out.println("*************************************************");
+            System.out.println("\tescriu 1 o 2 per escollir mode\t");
+            System.out.println("\tmode 1 Movies\t");
+            System.out.println("\tmode 2 Casting\t");
+            System.out.println("\texit per sortir\t");
+            System.out.println("*************************************************");
 
-            System.out.println("escriu 1 o 2 per escollir mode");
-            System.out.println("mode 1 Movies");
-            System.out.println("mode 2 Casting");
-            String sw = in.nextLine();
 
-            switch(sw){
-                case "1":
+            do {
+                System.out.println("Escull una opció:");
+                String sw = in.next();
+                switch (sw) {
+                    case "1":
                         firstMode();
-
-                    break;
-                case "2":
+                        break;
+                    case "2":
                         secondMode();
-                    break;
-                default:
-                    System.out.println("el valor introduit no es valid");
-                    break;
-            }
+                        break;
+                    case "exit":
+                        bol = false;
+                        break;
+                    default:
+                        System.out.println("el valor introduit no es valid");
+                        break;
+                }
+            }while(bol);
     }
 
     /**
@@ -47,7 +56,7 @@ public class MenuMain {
         System.out.println("PLANTILLA");
 
         for (Cast c: casts) {
-            System.out.println( c.getCharacter() + "\t<----->\t" + c.getName());
+            System.out.println( "\t" + c.getCharacter() + "\t<----->\t" + c.getName());
 
         }
     }
@@ -61,37 +70,19 @@ public class MenuMain {
         ArrayList<Cast> casts = SQLSelect.getCasts(SQL);
 
         for (Cast cast: casts) {
-            System.out.println(cast.id + ": " + cast.getCharacter() + "\t<----->\t" + cast.getName());
+            System.out.println("\t" + cast.id + ": " + cast.getCharacter() + "\t<----->\t" + cast.getName());
         }
 
         System.out.print("Escull un actor y mostrare en quines pel·lícules surt: ");
 
         int sel = in.nextInt();
-            SQL = "SELECT * FROM MOVIE AS A JOIN CAST AS B ON (A.MOVIE_ID = B.MOVIE_ID) WHERE";
-        ArrayList<Cast> c = SQLSelect.getCasts(SQL);
+            SQL = "SELECT * FROM MOVIE AS A JOIN CAST AS B ON (A.MOVIE_ID = B.MOVIE_ID) WHERE B.CAST_ID = " + sel + ";";
+        ArrayList<Movie> movies = SQLSelect.getMovies(SQL);
 
         System.out.println("PEL·LÍCULES");
-    }
-
-    /**
-     * inicia el segon mode
-
-    private static void secondMode(){
-        Scanner in = new Scanner(System.in);
-        System.out.println("iniciant mode 2 Casting");
-        ArrayList<Cast> casts = SQLSelect.SelectCast(-1);
-
-        for (Cast m: casts) {
-            System.out.println("identificador: " + m.getId() + "\n  nom: " + m.getName());
+        for (Movie m: movies) {
+            System.out.println(m.getTitle());
+            System.out.println("\t" + m.getReleaseDate());
         }
-
-        System.out.print("Escull un actor: ");
-        int sel = in.nextInt();
-
-        casts.clear();
-        casts = SQLSelect.SelectCast(sel);
-        Cast m = casts.get(0);
-        System.out.println("\n" + m.getName() + " <-Interpreta a-> " + m.getCharacter());
-
-    }*/
+    }
 }
