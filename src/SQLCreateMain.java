@@ -29,7 +29,7 @@ public class SQLCreateMain {
             stmt.executeUpdate(sql);
 
             sql = "CREATE TABLE IF NOT EXISTS CAST " +
-                    "(CAST_ID         INTEGER       PRIMARY KEY," +
+                    "(CAST_ID          INTEGER        PRIMARY KEY," +
                     " CAST_NAME       TEXT          NOT NULL, " +
                     " CHARACTER       TEXT          NOT NULL," +
                     " MOVIE_ID        INT          NOT NULL," +

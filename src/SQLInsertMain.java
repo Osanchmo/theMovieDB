@@ -36,11 +36,12 @@ public class SQLInsertMain {
             }
 
             for (Cast cast : casts) {
-                sql = "INSERT OR IGNORE INTO CAST (CAST_NAME,CHARACTER,MOVIE_ID) " + "VALUES (?,?,?);";
+                sql = "INSERT OR IGNORE INTO CAST (ID,CAST_ID,CAST_NAME,CHARACTER,MOVIE_ID) " + "VALUES (?,?,?,?,?);";
                 PreparedStatement prep = c.prepareStatement(sql); {
-                    prep.setString(1, cast.getName());
-                    prep.setString(2,cast.getCharacter());
-                    prep.setInt(3,cast.getMovie_id());
+                    prep.setLong(1, cast.getId());
+                    prep.setString(2, cast.getName());
+                    prep.setString(3, cast.getCharacter());
+                    prep.setInt(4, cast.getMovie_id());
                     prep.executeUpdate();
                 }
 

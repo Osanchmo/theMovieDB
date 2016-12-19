@@ -23,7 +23,6 @@ public class MenuMain {
                     System.out.println("el valor introduit no es valid");
                     break;
             }
-
     }
 
     /**
@@ -31,28 +30,52 @@ public class MenuMain {
      */
     private static void firstMode(){
         Scanner in = new Scanner(System.in);
-        System.out.println("iniciant mode 1 Movies");
-        ArrayList<Movie> movies = SQLSelect.SelectMovies(-1);
+        System.out.println("iniciant mode 1 Movies \n Mostrant pel·lícules: ");
+        String SQL = "SELECT * FROM MOVIE;";
+        ArrayList<Movie> movies = SQLSelect.getMovies(SQL);
 
         for (Movie m: movies) {
             System.out.println("identificador: " + m.getId() + "\n  Titol: " + m.getTitle());
         }
 
-        System.out.print("Escull una película: ");
+        System.out.print("Escull una película per veure el actors que han treballat en aquesta: ");
+
         int sel = in.nextInt();
+        SQL = "SELECT * FROM CAST WHERE MOVIE_ID = " + sel + ";";
+        ArrayList<Cast> casts = SQLSelect.getCasts(SQL);
 
-        movies.clear();
-        movies = SQLSelect.SelectMovies(sel);
-        Movie m = movies.get(0);
-            System.out.println("\n" + m.getTitle());
-            System.out.println(m.getReleaseDate());
+        System.out.println("PLANTILLA");
 
+        for (Cast c: casts) {
+            System.out.println( c.getCharacter() + "\t<----->\t" + c.getName());
 
+        }
+    }
+
+    private static void secondMode(){
+
+        Scanner in = new Scanner(System.in);
+        System.out.println("iniciant mode 2 Casting \n Mostrant casting: ");
+        String SQL = "SELECT * FROM CAST;";
+
+        ArrayList<Cast> casts = SQLSelect.getCasts(SQL);
+
+        for (Cast cast: casts) {
+            System.out.println(cast.id + ": " + cast.getCharacter() + "\t<----->\t" + cast.getName());
+        }
+
+        System.out.print("Escull un actor y mostrare en quines pel·lícules surt: ");
+
+        int sel = in.nextInt();
+            SQL = "SELECT * FROM MOVIE AS A JOIN CAST AS B ON (A.MOVIE_ID = B.MOVIE_ID) WHERE";
+        ArrayList<Cast> c = SQLSelect.getCasts(SQL);
+
+        System.out.println("PEL·LÍCULES");
     }
 
     /**
      * inicia el segon mode
-     */
+
     private static void secondMode(){
         Scanner in = new Scanner(System.in);
         System.out.println("iniciant mode 2 Casting");
@@ -70,5 +93,5 @@ public class MenuMain {
         Cast m = casts.get(0);
         System.out.println("\n" + m.getName() + " <-Interpreta a-> " + m.getCharacter());
 
-    }
+    }*/
 }

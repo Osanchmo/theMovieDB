@@ -50,12 +50,12 @@ public class DataGet {
 
                 for (int x = 0; x < array.size(); x++) {
                     JSONObject jo= (JSONObject)array.get(x);
-                    c = new Cast((String)jo.get("name"),(String)jo.get("character"),i);
+                    c = new Cast((String)jo.get("name"), (String)jo.get("character"), i,(Long)jo.get("cast_id"));
                     casts.add(c);
                 }
 
             } catch (Exception e) {
-                System.out.println("La peli "+e+" no existeix");
+                System.out.println("La peli "+ e +" no existeix");
             }
         }
         return casts;
