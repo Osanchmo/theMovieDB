@@ -35,7 +35,7 @@ public class DataGet {
 
         for (int i = 0; i < 5; i++) {
 
-            int cast = 600 + i;
+            int cast = 605 + i;
 
             String film = String.valueOf(cast);
 
@@ -73,7 +73,7 @@ public class DataGet {
         Movie m;
         for (int i = 0; i < 5; i++) {
 
-            int peli = 600 + i;
+            int peli = 605 + i;
             String film = String.valueOf(peli);
             String peticio = "https://api.themoviedb.org/3/movie/"+film+"?api_key="+api_key;
 

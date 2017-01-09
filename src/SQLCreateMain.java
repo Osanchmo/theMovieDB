@@ -1,6 +1,7 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
+import java.util.Properties;
 
 public class SQLCreateMain {
 
@@ -11,13 +12,14 @@ public class SQLCreateMain {
     private static void createDB(){
         Connection c = null;
         Statement stmt = null;
-        try {
 
-            //tipus de bd
-            Class.forName("org.sqlite.JDBC");
+        try {
+            Class.forName("org.postgresql.Driver");
             //ruta BD
-            c = DriverManager.getConnection("jdbc:sqlite:movid.db");
+            c = DriverManager.getConnection("jdbc:postgresql://172.31.73.180:5432/moviedb","postgres","root");
             System.out.println("Conexión con BBDD establecida");
+            //tipus de bd
+
 
             //Creació de taules
             stmt = c.createStatement();
@@ -26,17 +28,19 @@ public class SQLCreateMain {
                     " TITLE           TEXT         NOT NULL, " +
                     " REL_DATE        TEXT          NOT NULL," +
                     " PRIMARY KEY (MOVIE_ID))";
+            //sql = "DROP TABLE MOVIE CASCADE";
             stmt.executeUpdate(sql);
 
-            sql = "CREATE TABLE IF NOT EXISTS CAST " +
+            sql = "CREATE TABLE IF NOT EXISTS CASTI " +
                     "(CAST_ID          INTEGER        PRIMARY KEY," +
                     " CAST_NAME       TEXT          NOT NULL, " +
                     " CHARACTER       TEXT          NOT NULL," +
                     " MOVIE_ID        INT          NOT NULL," +
                     " FOREIGN KEY (MOVIE_ID) REFERENCES MOVIE(MOVIE_ID))";
+            //sql = "DROP TABLE CASTI CASCADE";
             stmt.executeUpdate(sql);
-
             stmt.close();
+
             c.close();
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());

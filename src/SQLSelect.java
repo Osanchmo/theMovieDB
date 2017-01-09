@@ -7,8 +7,11 @@ public class SQLSelect {
         ResultSet rs = null;
 
         try{
-            Class.forName("org.sqlite.JDBC");
-            Connection c = DriverManager.getConnection("jdbc:sqlite:movid.db");
+            Class.forName("org.postgresql.Driver");
+            //ruta BD
+            Connection c =
+            DriverManager.getConnection("jdbc:postgresql://172.31.73.180:5432/moviedb","postgres","root");
+
             Statement stmt = c.createStatement();
             rs = stmt.executeQuery(query);
 

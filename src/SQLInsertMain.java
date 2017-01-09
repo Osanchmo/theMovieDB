@@ -3,6 +3,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Properties;
 
 public class SQLInsertMain {
     public static void main(String[] args) {
@@ -16,17 +17,17 @@ public class SQLInsertMain {
         Connection c = null;
         Statement stmt = null;
         try {
-            Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:movid.db");
-            c.setAutoCommit(false);
-            System.out.println("Opened database successfully");
+            Class.forName("org.postgresql.Driver");
+            //ruta BD
+            c = DriverManager.getConnection("jdbc:postgresql://172.31.73.180:5432/moviedb","postgres","root");
+            System.out.println("Conexión con BBDD establecida");
 
             String sql = "";
             stmt = c.createStatement();
 
             //Afegil les dades obtesses de la API a la BD
             for (Movie m: movies) {
-                sql = "INSERT OR IGNORE INTO MOVIE (MOVIE_ID,TITLE,REL_DATE) " + "VALUES (?,?,?);";
+                sql = "INSERT INTO MOVIE (MOVIE_ID,TITLE,REL_DATE) " + "VALUES (?,?,?) ON CONFLICT DO NOTHING;";
                 PreparedStatement prep = c.prepareStatement(sql); {
                     prep.setInt(1, m.getId());
                     prep.setString(2, m.getTitle());
@@ -36,7 +37,7 @@ public class SQLInsertMain {
             }
 
             for (Cast cast : casts) {
-                sql = "INSERT OR IGNORE INTO CAST (CAST_ID,CAST_NAME,CHARACTER,MOVIE_ID) " + "VALUES (?,?,?,?);";
+                sql = "INSERT INTO CASTI (CAST_ID,CAST_NAME,CHARACTER,MOVIE_ID) " + "VALUES (?,?,?,?) ON CONFLICT DO NOTHING;";
                 PreparedStatement prep = c.prepareStatement(sql); {
                     prep.setLong(1, cast.getId());
                     prep.setString(2, cast.getName());
@@ -48,7 +49,6 @@ public class SQLInsertMain {
             }
 
             stmt.close();
-            c.commit();
             c.close();
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
