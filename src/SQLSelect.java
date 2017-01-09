@@ -14,7 +14,7 @@ public class SQLSelect {
 
             Statement stmt = c.createStatement();
             rs = stmt.executeQuery(query);
-
+            c.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

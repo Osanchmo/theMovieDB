@@ -50,7 +50,7 @@ public class DataGet {
 
                 for (int x = 0; x < array.size(); x++) {
                     JSONObject jo= (JSONObject)array.get(x);
-                    c = new Cast((String)jo.get("name"), (String)jo.get("character"), i,(Long)jo.get("cast_id"));
+                    c = new Cast((String)jo.get("name"), (String)jo.get("character"), cast,(Long)jo.get("cast_id"));
                     casts.add(c);
                 }
 
@@ -83,7 +83,7 @@ public class DataGet {
                 Object temp = JSONValue.parse(s);
                 JSONObject data = (JSONObject)temp;
 
-                m = new Movie(i,(String)data.get("original_title"), (String)data.get("release_date"));
+                m = new Movie(peli,(String)data.get("original_title"), (String)data.get("release_date"));
                 movies.add(m);
 
             } catch (Exception e) {

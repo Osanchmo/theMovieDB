@@ -32,11 +32,12 @@ public class SQLCreateMain {
             stmt.executeUpdate(sql);
 
             sql = "CREATE TABLE IF NOT EXISTS CASTI " +
-                    "(CAST_ID          INTEGER        PRIMARY KEY," +
+                    "(CAST_ID          INTEGER        NOT NULL," +
                     " CAST_NAME       TEXT          NOT NULL, " +
                     " CHARACTER       TEXT          NOT NULL," +
                     " MOVIE_ID        INT          NOT NULL," +
-                    " FOREIGN KEY (MOVIE_ID) REFERENCES MOVIE(MOVIE_ID))";
+                    "FOREIGN KEY (MOVIE_ID) REFERENCES MOVIE(MOVIE_ID)," +
+                    "PRIMARY KEY (CAST_ID,MOVIE_ID))";
             //sql = "DROP TABLE CASTI CASCADE";
             stmt.executeUpdate(sql);
             stmt.close();

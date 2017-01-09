@@ -45,7 +45,7 @@ public class MenuMain {
         ArrayList<Movie> movies = SQLSelect.getMovies(SQL);
 
         for (Movie m: movies) {
-            System.out.println("identificador: " + m.getId() + "\n  Titol: " + m.getTitle());
+            System.out.println( m.getId() + ": " + m.getTitle());
         }
 
         System.out.print("Escull una película per veure el actors que han treballat en aquesta: ");
@@ -57,7 +57,7 @@ public class MenuMain {
         System.out.println("PLANTILLA");
 
         for (Cast c: casts) {
-            System.out.println( "\t" + c.getCharacter() + "\t<----->\t" + c.getName());
+            System.out.println("\t" + c.getId() + ":"  + c.getCharacter() + "\t<----->\t" + c.getName());
 
         }
     }
@@ -71,7 +71,7 @@ public class MenuMain {
         ArrayList<Cast> casts = SQLSelect.getCasts(SQL);
 
         for (Cast cast: casts) {
-            System.out.println("\t" + cast.id + ": " + cast.getCharacter() + "\t<----->\t" + cast.getName());
+            System.out.println("\t" + cast.getId() + ": " + cast.getCharacter() + "\t<----->\t" + cast.getName());
         }
 
         System.out.print("Escull un actor y mostrare en quines pel·lícules surt: ");
